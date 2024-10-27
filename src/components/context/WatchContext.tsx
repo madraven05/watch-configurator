@@ -28,7 +28,7 @@ export interface AppleWatchUltraState {
   };
   "band-outside": {
     color?: string;
-    texture?: string;
+    texture?: "normal" | "leather";
   };
 }
 
@@ -62,6 +62,7 @@ export const WatchContextProvider = ({ children }: { children: ReactNode }) => {
     },
     "band-outside": {
       color: "#DC602A",
+      texture: "leather"
     },
     "digital-crown": {
       color: "#DC602A",

@@ -11,7 +11,7 @@ import * as THREE from "three";
 import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { normalMap } from "three/webgpu";
+import { normalMap, roughness } from "three/webgpu";
 import { useWatchContext } from "../context/WatchContext";
 
 type GLTFResult = GLTF & {
@@ -113,6 +113,23 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
     emissiveMap: "/apple-watch/textures/zWSbkmvYqArUSOM_emissive.jpeg",
   });
 
+  const leatherBandTextureProps = useTexture({
+    // map:"/apple-watch/textures/Leather037_2K-JPG_Color.jpg",
+    normalMap: "/apple-watch/textures/Leather037_2K-JPG_NormalGL.jpg",
+    roughnessMap: "/apple-watch/textures/Leather037_2K-JPG_Roughness.jpg",
+    displacementMap: "/apple-watch/textures/Leather037_2K-JPG_Displacement.jpg",
+  });
+
+  leatherBandTextureProps.normalMap.repeat.set(5,5);
+  leatherBandTextureProps.displacementMap.repeat.set(5,5);
+
+  leatherBandTextureProps.normalMap.wrapS =
+    leatherBandTextureProps.normalMap.wrapT = THREE.MirroredRepeatWrapping;
+  leatherBandTextureProps.roughnessMap.wrapS =
+    leatherBandTextureProps.roughnessMap.wrapT = THREE.MirroredRepeatWrapping;
+  leatherBandTextureProps.displacementMap.wrapS =
+    leatherBandTextureProps.displacementMap.wrapT = THREE.RepeatWrapping;
+
   return (
     <group {...props} dispose={null}>
       <group scale={1}>
@@ -206,7 +223,6 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         {/* Digital crown */}
         <mesh
           geometry={nodes.cUdLcKThVrgrQtG.geometry}
-          // material=
         >
           <meshStandardMaterial
             {...materials.hgluOErnmhtiUYN}
@@ -313,17 +329,22 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         />
 
         {/* Band inside */}
-        <mesh geometry={nodes.yFPJxjHCZaMTTSP.geometry}>
-          <meshStandardMaterial
-            {...bandInsideTextureProps}
-            color={watchState?.["band-inside"].color}
-          />
-        </mesh>
+        {watchState["band-outside"].texture === "normal" ? (
+          <mesh geometry={nodes.yFPJxjHCZaMTTSP.geometry}>
+            <meshStandardMaterial
+              {...bandInsideTextureProps}
+              color={watchState?.["band-inside"].color}
+            />
+          </mesh>
+        ) : null}
 
         {/* Band outside */}
         <mesh geometry={nodes.hFurRdLJljkLFkB.geometry}>
           <meshStandardMaterial
-            {...bandOutsideTextureProps}
+            {...(watchState["band-outside"].texture === "normal"
+              ? bandOutsideTextureProps
+              : leatherBandTextureProps)}
+            displacementScale={0.06}
             color={watchState["band-outside"].color}
           />
         </mesh>

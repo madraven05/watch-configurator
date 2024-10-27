@@ -2,6 +2,7 @@ import React from "react";
 import {
   Environment,
   MeshReflectorMaterial,
+  OrbitControls,
   PresentationControls,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -14,6 +15,7 @@ const ConfiguratorCanvas = () => {
     <div className="h-full w-full">
       <Canvas camera={{ position: [0, 0, 15] }}>
         <PresentationControls
+
           global
           rotation={[0, 0.3, 0]} // Default rotation
           polar={[-Math.PI / 2, Math.PI / 2]} // Vertical rotation limits
