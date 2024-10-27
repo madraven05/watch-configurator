@@ -107,6 +107,12 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
     emissiveMap: "/apple-watch/textures/PwlvrZKCtsfdXgk_emissive.jpeg",
   });
 
+  const bandOutsideTextureProps = useTexture({
+    normalMap: "/apple-watch/textures/zWSbkmvYqArUSOM_normal.png",
+    roughnessMap: "/apple-watch/textures/zWSbkmvYqArUSOM_metallicRoughness.png",
+    emissiveMap: "/apple-watch/textures/zWSbkmvYqArUSOM_emissive.jpeg",
+  });
+
   return (
     <group {...props} dispose={null}>
       <group scale={1}>
@@ -173,8 +179,14 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         {/* Action button */}
         <mesh
           geometry={nodes.ARsYRDtRfaqRvjc.geometry}
-          material={materials.RLtPucjBYpWldMw}
-        />
+          // material={{...materials.RLtPucjBYpWldMw}}
+        >
+          <meshStandardMaterial
+            {...materials.RLtPucjBYpWldMw}
+            color={watchState["action-button"].color}
+          />
+        </mesh>
+
         <mesh
           geometry={nodes.dEgYDFMHfbkpmEF.geometry}
           material={materials.vAAmUmRloGrqeoZ}
@@ -194,8 +206,13 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         {/* Digital crown */}
         <mesh
           geometry={nodes.cUdLcKThVrgrQtG.geometry}
-          material={materials.hgluOErnmhtiUYN}
-        />
+          // material=
+        >
+          <meshStandardMaterial
+            {...materials.hgluOErnmhtiUYN}
+            color={watchState["digital-crown"].color}
+          />
+        </mesh>
 
         <mesh
           geometry={nodes.uwsZHcLJnpKqEWY.geometry}
@@ -304,8 +321,9 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         {/* Band outside */}
         <mesh
           geometry={nodes.hFurRdLJljkLFkB.geometry}
-          material={materials.zWSbkmvYqArUSOM}
-        />
+        >
+          <meshStandardMaterial {...bandOutsideTextureProps} color={watchState["band-outside"].color}/>
+          </mesh>
       </group>
     </group>
   );

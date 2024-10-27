@@ -52,19 +52,19 @@ export const WatchContextProvider = ({ children }: { children: ReactNode }) => {
       color: "#ffffff",
     },
     "action-button": {
-      color: "#fffff",
+      color: "#DC602A",
     },
     "band-holder": {
       color: "#fffff",
     },
     "band-inside": {
-      color: "#9abfff",
+      color: "#DC602A",
     },
     "band-outside": {
-      color: "#fffff",
+      color: "#DC602A",
     },
     "digital-crown": {
-      color: "#fffff",
+      color: "#DC602A",
     },
     "side-button": {
       color: "#fffff",
