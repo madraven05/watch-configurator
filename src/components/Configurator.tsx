@@ -9,7 +9,7 @@ import {
 
 const Configurator = () => {
   const colors = [
-    "#f44336",
+    "#dc602a",
     "#e91e63",
     "#9c27b0",
     "#673ab7",

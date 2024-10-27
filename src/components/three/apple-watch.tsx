@@ -280,8 +280,10 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         />
         <mesh
           geometry={nodes.wmnqxNpNCdRfDfA.geometry}
-          material={materials.UlFjqascpPnJnyb}
-        />
+          // material={materials.UlFjqascpPnJnyb}
+        >
+          <meshStandardMaterial {...materials.UlFjqascpPnJnyb} />
+        </mesh>
         <mesh
           geometry={nodes.SAesXTqirPZWRXc.geometry}
           material={materials.LMNEMIqLLSofXax}
@@ -319,11 +321,12 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         </mesh>
 
         {/* Band outside */}
-        <mesh
-          geometry={nodes.hFurRdLJljkLFkB.geometry}
-        >
-          <meshStandardMaterial {...bandOutsideTextureProps} color={watchState["band-outside"].color}/>
-          </mesh>
+        <mesh geometry={nodes.hFurRdLJljkLFkB.geometry}>
+          <meshStandardMaterial
+            {...bandOutsideTextureProps}
+            color={watchState["band-outside"].color}
+          />
+        </mesh>
       </group>
     </group>
   );
