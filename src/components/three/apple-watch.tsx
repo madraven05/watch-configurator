@@ -12,6 +12,7 @@ import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { normalMap } from "three/webgpu";
+import { useWatchContext } from "../context/WatchContext";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -97,6 +98,8 @@ type GLTFResult = GLTF & {
 
 export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF("/apple-watch/scene.gltf") as GLTFResult;
+
+  const { watchState } = useWatchContext();
 
   const bandInsideTextureProps = useTexture({
     normalMap: "/apple-watch/textures/PwlvrZKCtsfdXgk_normal.png",
@@ -292,7 +295,10 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
 
         {/* Band inside */}
         <mesh geometry={nodes.yFPJxjHCZaMTTSP.geometry}>
-          <meshStandardMaterial {...bandInsideTextureProps} color={"indigo"}/>
+          <meshStandardMaterial
+            {...bandInsideTextureProps}
+            color={watchState?.["band-inside"].color}
+          />
         </mesh>
 
         {/* Band outside */}

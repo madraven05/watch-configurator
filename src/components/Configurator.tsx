@@ -1,6 +1,11 @@
 import React from "react";
-import { CirclePicker } from "react-color";
+import { CirclePicker, ColorResult } from "react-color";
 import PanelDisclosure from "./common/Disclosure";
+import {
+  AppleWatchUltraState,
+  AppleWatchUltraStateKeys,
+  useWatchContext,
+} from "./context/WatchContext";
 
 const Configurator = () => {
   const colors = [
@@ -16,6 +21,22 @@ const Configurator = () => {
     "#4caf50",
     "#8bc34a",
   ];
+
+  const { setWatchState } = useWatchContext();
+
+  const handleColorChange = (
+    part: AppleWatchUltraStateKeys,
+    color: ColorResult
+  ) => {
+    console.debug(`Changing color of ${part} to color: ${color.hex}`);
+    setWatchState((prevWatchState) => ({
+      ...prevWatchState,
+      [part]: {
+        ...prevWatchState[part],
+        color: color.hex,
+      },
+    }));
+  };
 
   return (
     <div className="w-1/3 h-full shadow-md rounded-lg p-5 font-thin text-white">
@@ -39,20 +60,22 @@ const Configurator = () => {
         </div>
 
         <div className="flex flex-col w-full">
-            <h3>Band Inside</h3>
-            <div className="mt-3 flex flex-col gap-4">
-              <PanelDisclosure title="Colours">
-                <div>
-                  <CirclePicker colors={colors} />
-                </div>
-              </PanelDisclosure>
-              <PanelDisclosure title="Texture">
-                <div>
-                  
-                </div>
-              </PanelDisclosure>
-            </div>
+          <h3>Band Inside</h3>
+          <div className="mt-3 flex flex-col gap-4">
+            <PanelDisclosure title="Colours">
+              <div>
+                <CirclePicker
+                  onChange={(color) => handleColorChange("band-inside", color)}
+                  circleSize={20}
+                  colors={colors}
+                />
+              </div>
+            </PanelDisclosure>
+            <PanelDisclosure title="Texture">
+              <div></div>
+            </PanelDisclosure>
           </div>
+        </div>
 
         <div>
           <h3>Band Outside</h3>
