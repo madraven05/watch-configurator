@@ -46,7 +46,6 @@ const ConfiguratorCanvas = () => {
           </mesh>
         </PresentationControls>
         <Environment preset="studio" />
-        <OrbitControls/>
       </Canvas>
     </div>
   );
