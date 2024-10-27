@@ -9,7 +9,7 @@ import {
 
 const Configurator = () => {
   const colors = [
-    "#dc602a",
+    "#DC602A",
     "#e91e63",
     "#9c27b0",
     "#673ab7",
@@ -39,23 +39,55 @@ const Configurator = () => {
   };
 
   return (
-    <div className="w-1/3 h-full shadow-md rounded-lg p-5 font-thin text-white">
+    <div className="w-1/3 h-full overflow-y-auto shadow-md rounded-lg py-10 px-5 font-thin text-white">
       <h2>Customize your watch!</h2>
-      <div className="flex flex-col w-full gap-5 mt-5 overflow-y-auto items-start justify-center">
-        <h3>Main Body</h3>
+      <div className="flex flex-col w-full gap-5 mt-5  items-start justify-center">
+        
         <div>
-          <h3>Action Button</h3>
+        <h3>Main Body</h3>
         </div>
 
-        <div>
+        <div className="flex flex-col w-full">
+          <h3>Action Button</h3>
+          <div className="mt-3 flex flex-col gap-4">
+            <PanelDisclosure title="Colours">
+              <div>
+                <CirclePicker
+                  onChange={(color) => handleColorChange("action-button", color)}
+                  circleSize={20}
+                  colors={colors}
+                />
+              </div>
+            </PanelDisclosure>
+            <PanelDisclosure title="Texture">
+              <div></div>
+            </PanelDisclosure>
+          </div>
+        </div>
+
+        <div className="flex flex-col w-full">
           <h3>Side Button</h3>
         </div>
 
-        <div>
+        <div className="flex flex-col w-full">
           <h3>Digital Crown</h3>
+          <div className="mt-3 flex flex-col gap-4">
+            <PanelDisclosure title="Colours">
+              <div>
+                <CirclePicker
+                  onChange={(color) => handleColorChange("digital-crown", color)}
+                  circleSize={20}
+                  colors={colors}
+                />
+              </div>
+            </PanelDisclosure>
+            <PanelDisclosure title="Texture">
+              <div></div>
+            </PanelDisclosure>
+          </div>
         </div>
 
-        <div>
+        <div className="flex flex-col w-full">
           <h3>Band Holder</h3>
         </div>
 
@@ -77,8 +109,22 @@ const Configurator = () => {
           </div>
         </div>
 
-        <div>
+        <div className="flex flex-col w-full">
           <h3>Band Outside</h3>
+          <div className="mt-3 flex flex-col gap-4">
+            <PanelDisclosure title="Colours">
+              <div>
+                <CirclePicker
+                  onChange={(color) => handleColorChange("band-outside", color)}
+                  circleSize={20}
+                  colors={colors}
+                />
+              </div>
+            </PanelDisclosure>
+            <PanelDisclosure title="Texture">
+              <div></div>
+            </PanelDisclosure>
+          </div>
         </div>
       </div>
     </div>
