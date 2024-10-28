@@ -28,7 +28,7 @@ const ConfiguratorCanvas:React.FC = () => {
             <planeGeometry args={[170, 170]} />
             <MeshReflectorMaterial
               blur={[0, 0]}
-              mixBlur={0} // How much blur mixes with surface roughness (default = 1)
+              mixBlur={0}
               mixStrength={1} // Strength of the reflections
               mixContrast={1} // Contrast of the reflections
               resolution={256} // Off-buffer resolution, lower=faster, higher=better quality, slower
