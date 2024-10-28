@@ -125,7 +125,7 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
     roughnessMap:
       "/apple-watch/textures/matte/Poliigon_MetalPaintedMatte_7037_Roughness.jpg",
     displacementMap:
-      "public/apple-watch/textures/matte/Poliigon_MetalPaintedMatte_7037_Displacement.jpg",
+      "/apple-watch/textures/matte/Poliigon_MetalPaintedMatte_7037_Displacement.jpg",
   });
 
   const watchFaceTexture = useTexture({
