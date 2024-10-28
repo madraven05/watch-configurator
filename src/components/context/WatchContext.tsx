@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 export interface AppleWatchUltraState {
   "main-body": {
     color?: string;
-    texture?: string;
+    texture?: "normal" | "matte";
   };
   "action-button": {
     color?: string;
@@ -49,7 +49,8 @@ const WatchContext = createContext<WatchContextType | undefined>(undefined);
 export const WatchContextProvider = ({ children }: { children: ReactNode }) => {
   const [watchState, setWatchState] = useState<AppleWatchUltraState>({
     "main-body": {
-      color: "#ffffff",
+      color: "#292929",
+      texture: "normal"
     },
     "action-button": {
       color: "#DC602A",
@@ -62,7 +63,7 @@ export const WatchContextProvider = ({ children }: { children: ReactNode }) => {
     },
     "band-outside": {
       color: "#DC602A",
-      texture: "leather"
+      texture: "normal"
     },
     "digital-crown": {
       color: "#DC602A",
