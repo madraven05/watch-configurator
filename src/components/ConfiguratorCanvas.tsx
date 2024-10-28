@@ -12,7 +12,7 @@ import { AppleWatch } from "./three/apple-watch";
 
 const ConfiguratorCanvas = () => {
   return (
-    <div className="h-full w-full shadow-lg rounded-xl">
+    <div className="h-full w-3/4 shadow-lg rounded-xl">
       <Canvas camera={{ position: [0, 0, 15] }}>
         <PresentationControls
 

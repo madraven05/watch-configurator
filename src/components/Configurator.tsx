@@ -60,20 +60,17 @@ const Configurator = () => {
   };
 
   return (
-    <div className="w-1/3 h-full overflow-y-auto shadow-md rounded-lg py-10 px-5 font-thin ">
+    <div className="w-1/4 h-screen overflow-auto fixed right-0 top-0 shadow-md bg-stone-400/30 backdrop-blur-lg text-stone-800 rounded-lg py-10 px-5 font-thin ">
       <h2>Customize your watch!</h2>
       <div className="flex flex-col w-full gap-5 mt-5  items-start justify-center">
-        
         {/* Main body */}
         <div className="flex flex-col w-full">
-          <h3>Main Body</h3>
+          <h3 className="font-normal">Main Body</h3>
           <div className="mt-4 flex flex-col gap-4">
             <PanelDisclosure title="Colours">
               <div>
                 <CirclePicker
-                  onChange={(color) =>
-                    handleColorChange("main-body", color)
-                  }
+                  onChange={(color) => handleColorChange("main-body", color)}
                   circleSize={20}
                   colors={mainBodyColors}
                 />
@@ -103,12 +100,13 @@ const Configurator = () => {
                 </button>
               </div>
             </PanelDisclosure>
+            <hr className="border-t-2 mt-2 rounded-full border-stone-400" />
           </div>
         </div>
 
         {/* Action button */}
         <div className="flex flex-col w-full">
-          <h3>Action Button</h3>
+          <h3 className="font-normal">Action Button</h3>
           <div className="mt-3 flex flex-col gap-4">
             <PanelDisclosure title="Colours">
               <div>
@@ -121,20 +119,18 @@ const Configurator = () => {
                 />
               </div>
             </PanelDisclosure>
-            <PanelDisclosure title="Texture">
-              <div></div>
-            </PanelDisclosure>
+            <hr className="border-t-2 mt-2 rounded-full border-stone-400" />
           </div>
         </div>
-        
+
         {/* Side button */}
-        <div className="flex flex-col w-full">
-          <h3>Side Button</h3>
-        </div>
-        
+        {/* <div className="flex flex-col w-full">
+          <h3 className="font-normal">Side Button</h3>
+        </div> */}
+
         {/* Digital crown */}
         <div className="flex flex-col w-full">
-          <h3>Digital Crown</h3>
+          <h3 className="font-normal">Digital Crown</h3>
           <div className="mt-3 flex flex-col gap-4">
             <PanelDisclosure title="Colours">
               <div>
@@ -147,17 +143,19 @@ const Configurator = () => {
                 />
               </div>
             </PanelDisclosure>
+            <hr className="border-t-2 mt-2 rounded-full border-stone-400" />
           </div>
         </div>
-        
+
         {/* Band holder */}
-        <div className="flex flex-col w-full">
-          <h3>Band Holder</h3>
-        </div>
-        
+        {/* <div className="flex flex-col gap-3 w-full">
+          <h3 className="font-normal">Band Holder</h3>
+          <hr className="text-stone-800"/>
+        </div> */}
+
         {/* Band inside */}
         <div className="flex flex-col w-full">
-          <h3>Band Inside</h3>
+          <h3 className="font-normal">Band Inside</h3>
           <div className="mt-3 flex flex-col gap-4">
             <PanelDisclosure title="Colours">
               <div>
@@ -168,12 +166,13 @@ const Configurator = () => {
                 />
               </div>
             </PanelDisclosure>
+            <hr className="border-t-2 mt-2 rounded-full border-stone-400" />
           </div>
         </div>
 
         {/* Band outside */}
         <div className="flex flex-col w-full">
-          <h3>Band Outside</h3>
+          <h3 className="font-normal">Band Outside</h3>
           <div className="mt-3 flex flex-col gap-4">
             <PanelDisclosure title="Colours">
               <div>
