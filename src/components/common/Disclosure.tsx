@@ -1,5 +1,5 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
-import React, { Children, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { FaAngleDown } from "react-icons/fa6";
 
 interface PanelDisclosureProps {

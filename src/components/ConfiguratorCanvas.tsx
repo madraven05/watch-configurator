@@ -2,15 +2,13 @@ import React from "react";
 import {
   Environment,
   MeshReflectorMaterial,
-  OrbitControls,
   PresentationControls,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { PlaneGeometry } from "three";
 import { AppleWatch } from "./three/apple-watch";
 
-const ConfiguratorCanvas = () => {
+const ConfiguratorCanvas:React.FC = () => {
   return (
     <div className="lg:w-3/4 h-full w-full shadow-lg rounded-xl">
       <Canvas camera={{ position: [0, 0, 15] }}>

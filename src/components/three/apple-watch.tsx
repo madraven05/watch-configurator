@@ -8,10 +8,8 @@ Title: Apple Watch Ultra - Orange
 */
 
 import * as THREE from "three";
-import React from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { normalMap, roughness } from "three/webgpu";
 import { useWatchContext } from "../context/WatchContext";
 
 type GLTFResult = GLTF & {

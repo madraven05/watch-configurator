@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import { CirclePicker, ColorResult } from "react-color";
 import PanelDisclosure from "./common/Disclosure";
 import {
-  AppleWatchUltraState,
   AppleWatchUltraStateKeys,
   useWatchContext,
 } from "./context/WatchContext";
-import { BiCross, BiMenu } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
-import { FaBurger } from "react-icons/fa6";
 
-const Configurator = () => {
+const Configurator:React.FC = () => {
   const colors = [
     "#DC602A",
     "#491c02",
@@ -65,7 +63,12 @@ const Configurator = () => {
 
   return (
     <>
-    <BiMenu onClick={() => setShowDialog(true)} className={`${showDialog? 'hidden' : ''} fixed lg:hidden right-5 bg-stone-600/10 rounded-full p-2 top-14 text-5xl`}/>
+      <BiMenu
+        onClick={() => setShowDialog(true)}
+        className={`${
+          showDialog ? "hidden" : ""
+        } fixed lg:hidden right-5 bg-stone-600/10 rounded-full p-2 top-14 text-5xl`}
+      />
       <div
         className={`${
           showDialog ? "" : "hidden"
@@ -73,7 +76,10 @@ const Configurator = () => {
       >
         <div className="flex justify-between items-center w-full">
           <h2 className="text-lg">Customize your watch!</h2>
-          <CgClose className="text-xl lg:hidden" onClick={() => setShowDialog(false)} />
+          <CgClose
+            className="text-xl lg:hidden"
+            onClick={() => setShowDialog(false)}
+          />
         </div>
         <div className="flex flex-col w-full gap-5 mt-5  items-start justify-center">
           {/* Main body */}
