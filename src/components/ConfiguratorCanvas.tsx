@@ -27,7 +27,7 @@ const ConfiguratorCanvas:React.FC = () => {
           <mesh rotation={[-Math.PI / 2, 0, 0]} position-y={-5}>
             <planeGeometry args={[170, 170]} />
             <MeshReflectorMaterial
-              blur={[0, 0]} // Blur ground reflections (width, height), 0 skips blur
+              blur={[0, 0]}
               mixBlur={0} // How much blur mixes with surface roughness (default = 1)
               mixStrength={1} // Strength of the reflections
               mixContrast={1} // Contrast of the reflections
