@@ -4,7 +4,6 @@ import { useWatchContext } from "./components/context/WatchContext";
 
 function App() {
   const {watchState} = useWatchContext();
-  const col = (watchState["band-outside"].color);
 
   return (
     <div className="h-screen bg-stone-200 flex gap-10 justify-center p-20">

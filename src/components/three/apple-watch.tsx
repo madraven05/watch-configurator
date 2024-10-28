@@ -114,14 +114,29 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
   });
 
   const leatherBandTextureProps = useTexture({
-    // map:"/apple-watch/textures/Leather037_2K-JPG_Color.jpg",
-    normalMap: "/apple-watch/textures/Leather037_2K-JPG_NormalGL.jpg",
-    roughnessMap: "/apple-watch/textures/Leather037_2K-JPG_Roughness.jpg",
-    displacementMap: "/apple-watch/textures/Leather037_2K-JPG_Displacement.jpg",
+    normalMap: "/apple-watch/textures/leather/Leather037_2K-JPG_NormalGL.jpg",
+    roughnessMap:
+      "/apple-watch/textures/leather/Leather037_2K-JPG_Roughness.jpg",
+    displacementMap:
+      "/apple-watch/textures/leather/Leather037_2K-JPG_Displacement.jpg",
   });
 
-  leatherBandTextureProps.normalMap.repeat.set(5,5);
-  leatherBandTextureProps.displacementMap.repeat.set(5,5);
+  const matteMetalFinish = useTexture({
+    normalMap:
+      "/apple-watch/textures/matte/Poliigon_MetalPaintedMatte_7037_Normal.png",
+    roughnessMap:
+      "/apple-watch/textures/matte/Poliigon_MetalPaintedMatte_7037_Roughness.jpg",
+    displacementMap:
+      "public/apple-watch/textures/matte/Poliigon_MetalPaintedMatte_7037_Displacement.jpg",
+  });
+
+  const watchFaceTexture = useTexture({
+    map: "/apple-watch/textures/watch-face.webp",
+    emmisiveMap: "/apple-watch/textures/UlFjqascpPnJnyb_emissive.jpeg"
+  })
+
+  leatherBandTextureProps.normalMap.repeat.set(5, 5);
+  leatherBandTextureProps.displacementMap.repeat.set(5, 5);
 
   leatherBandTextureProps.normalMap.wrapS =
     leatherBandTextureProps.normalMap.wrapT = THREE.MirroredRepeatWrapping;
@@ -129,6 +144,9 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
     leatherBandTextureProps.roughnessMap.wrapT = THREE.MirroredRepeatWrapping;
   leatherBandTextureProps.displacementMap.wrapS =
     leatherBandTextureProps.displacementMap.wrapT = THREE.RepeatWrapping;
+
+  matteMetalFinish.displacementMap.repeat.set(5, 5);
+
 
   return (
     <group {...props} dispose={null}>
@@ -169,8 +187,19 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         {/* Main body */}
         <mesh
           geometry={nodes.wMgdGPGcmgrPUeE.geometry}
-          material={materials.DpfyoSSiSSiguqV}
-        />
+        >
+          <meshStandardMaterial
+            {...(watchState["main-body"].texture === "normal"
+              ? materials.DpfyoSSiSSiguqV
+              : matteMetalFinish)}
+            displacementScale={0.05}
+            color={
+              watchState["main-body"].texture === "normal"
+                ? "gray"
+                : watchState["main-body"].color
+            }
+          />
+        </mesh>
 
         <mesh
           geometry={nodes.yPaUlGyzZhvStMM.geometry}
@@ -221,9 +250,7 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
         />
 
         {/* Digital crown */}
-        <mesh
-          geometry={nodes.cUdLcKThVrgrQtG.geometry}
-        >
+        <mesh geometry={nodes.cUdLcKThVrgrQtG.geometry}>
           <meshStandardMaterial
             {...materials.hgluOErnmhtiUYN}
             color={watchState["digital-crown"].color}
@@ -294,11 +321,13 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
           geometry={nodes.scpcAfQFCzMwocy.geometry}
           material={materials.nwKRBiBrdJBKTDX}
         />
+
+        {/* Watch face */}
         <mesh
           geometry={nodes.wmnqxNpNCdRfDfA.geometry}
           // material={materials.UlFjqascpPnJnyb}
         >
-          <meshStandardMaterial {...materials.UlFjqascpPnJnyb} />
+          <meshStandardMaterial  {...watchFaceTexture}  />
         </mesh>
         <mesh
           geometry={nodes.SAesXTqirPZWRXc.geometry}
@@ -311,14 +340,39 @@ export function AppleWatch(props: JSX.IntrinsicElements["group"]) {
           material={materials.DpfyoSSiSSiguqV}
         />
 
+        {/* Band holders up and down */}
         <mesh
           geometry={nodes.vdoUifIjrUGtLiS.geometry}
           material={materials.DpfyoSSiSSiguqV}
-        />
+        >
+          <meshStandardMaterial
+            {...(watchState["main-body"].texture === "normal"
+              ? materials.DpfyoSSiSSiguqV
+              : matteMetalFinish)}
+            displacementScale={0.05}
+            color={
+              watchState["main-body"].texture === "normal"
+                ? "gray"
+                : watchState["main-body"].color
+            }
+          />
+        </mesh>
         <mesh
           geometry={nodes.DPJxFEyTsdtZHfm.geometry}
-          material={materials.DpfyoSSiSSiguqV}
-        />
+        >
+          <meshStandardMaterial
+            {...(watchState["main-body"].texture === "normal"
+              ? materials.DpfyoSSiSSiguqV
+              : matteMetalFinish)}
+            displacementScale={0.05}
+            color={
+              watchState["main-body"].texture === "normal"
+                ? "gray"
+                : watchState["main-body"].color
+            }
+          />
+        </mesh>
+
         <mesh
           geometry={nodes.DmhCzDQXADCcXPt.geometry}
           material={materials.RZAUBIkSLvyIlJf}
