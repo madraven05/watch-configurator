@@ -14,15 +14,14 @@ const Configurator = () => {
     "#e91e63",
     "#9c27b0",
     "#673ab7",
-    "#3f51b5",
-    "#2196f3",
-    "#03a9f4",
-    "#00bcd4",
+    "#0d122d",
     "#009688",
     "#4caf50",
     "#8bc34a",
     "#222222",
   ];
+
+  const mainBodyColors = ["#222222", "#636363"];
 
   const { watchState, setWatchState } = useWatchContext();
 
@@ -64,9 +63,22 @@ const Configurator = () => {
     <div className="w-1/3 h-full overflow-y-auto shadow-md rounded-lg py-10 px-5 font-thin text-white">
       <h2>Customize your watch!</h2>
       <div className="flex flex-col w-full gap-5 mt-5  items-start justify-center">
+        
+        {/* Main body */}
         <div className="flex flex-col w-full">
           <h3>Main Body</h3>
-          <div className="mt-3">
+          <div className="mt-4 flex flex-col gap-4">
+            <PanelDisclosure title="Colours">
+              <div>
+                <CirclePicker
+                  onChange={(color) =>
+                    handleColorChange("main-body", color)
+                  }
+                  circleSize={20}
+                  colors={mainBodyColors}
+                />
+              </div>
+            </PanelDisclosure>
             <PanelDisclosure title="Texture">
               <div className="flex gap-3">
                 <button
@@ -94,6 +106,7 @@ const Configurator = () => {
           </div>
         </div>
 
+        {/* Action button */}
         <div className="flex flex-col w-full">
           <h3>Action Button</h3>
           <div className="mt-3 flex flex-col gap-4">
@@ -113,11 +126,13 @@ const Configurator = () => {
             </PanelDisclosure>
           </div>
         </div>
-
+        
+        {/* Side button */}
         <div className="flex flex-col w-full">
           <h3>Side Button</h3>
         </div>
-
+        
+        {/* Digital crown */}
         <div className="flex flex-col w-full">
           <h3>Digital Crown</h3>
           <div className="mt-3 flex flex-col gap-4">
@@ -132,16 +147,15 @@ const Configurator = () => {
                 />
               </div>
             </PanelDisclosure>
-            <PanelDisclosure title="Texture">
-              <div></div>
-            </PanelDisclosure>
           </div>
         </div>
-
+        
+        {/* Band holder */}
         <div className="flex flex-col w-full">
           <h3>Band Holder</h3>
         </div>
-
+        
+        {/* Band inside */}
         <div className="flex flex-col w-full">
           <h3>Band Inside</h3>
           <div className="mt-3 flex flex-col gap-4">
@@ -154,12 +168,10 @@ const Configurator = () => {
                 />
               </div>
             </PanelDisclosure>
-            <PanelDisclosure title="Texture">
-              <div></div>
-            </PanelDisclosure>
           </div>
         </div>
 
+        {/* Band outside */}
         <div className="flex flex-col w-full">
           <h3>Band Outside</h3>
           <div className="mt-3 flex flex-col gap-4">
