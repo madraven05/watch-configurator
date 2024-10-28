@@ -52,7 +52,7 @@ const Configurator = () => {
   };
 
   return (
-    <div className="w-1/3 h-full overflow-y-auto shadow-md rounded-lg py-10 px-5 font-thin text-white">
+    <div className="w-1/3 h-full overflow-y-auto shadow-md rounded-lg py-10 px-5 font-thin ">
       <h2>Customize your watch!</h2>
       <div className="flex flex-col w-full gap-5 mt-5  items-start justify-center">
         <div>
