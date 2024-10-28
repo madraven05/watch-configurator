@@ -14,7 +14,7 @@ A 3D product configurator built with **React Three Fiber (R3F)**, **Tailwind CSS
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/watch-configurator.git
+   git clone https://github.com/madraven05/watch-configurator.git
    cd watch-configurator
    ```
 2. Install dependencies
