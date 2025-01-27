@@ -1,47 +1,26 @@
 import React from "react";
 import {
   Environment,
-  MeshReflectorMaterial,
   PresentationControls,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { AppleWatch } from "./three/apple-watch";
+import AppleWatch from "./three/AppleWatch";
+import Loading from "./three/Loading";
 
-const ConfiguratorCanvas:React.FC = () => {
+const ConfiguratorCanvas:React.FC<{modelPath: string}> = ({modelPath}) => {
   return (
-    <div className="lg:w-3/4 h-full w-full shadow-lg rounded-xl">
-      <Canvas camera={{ position: [0, 0, 15] }}>
+    <div className="h-full w-full">
+      <Canvas camera={{ position: [0, 0, 5] }}>
         <PresentationControls
-
           global
-          rotation={[0, 0.3, 0]} // Default rotation
-          polar={[-Math.PI / 2, Math.PI / 2]} // Vertical rotation limits
-        //   azimuth={[-Math.PI / 2, Math.PI / 2]} // Horizontal rotation limits
-          config={{ mass: 2, tension: 500 }} // Adjusts the "weight" and stiffness of the controls
-          // snap={{ mass: 4, tension: 1500 }}
+          rotation={[0, 0.3, 0]}
+          polar={[-Math.PI / 2, Math.PI / 2]}
+          config={{ mass: 2, tension: 500 }}
         >
-          <Suspense fallback={null}>
-            <AppleWatch />
+          <Suspense fallback={<Loading/>}>
+            <AppleWatch modelPath={modelPath}/>
           </Suspense>
-          <mesh rotation={[-Math.PI / 2, 0, 0]} position-y={-5}>
-            <planeGeometry args={[170, 170]} />
-            <MeshReflectorMaterial
-              blur={[0, 0]}
-              mixBlur={0}
-              mixStrength={1} // Strength of the reflections
-              mixContrast={1} // Contrast of the reflections
-              resolution={256} // Off-buffer resolution, lower=faster, higher=better quality, slower
-              mirror={0} // Mirror environment, 0 = texture colors, 1 = pick up env colors
-              depthScale={0} // Scale the depth factor (0 = no depth, default = 0)
-              minDepthThreshold={0.9} // Lower edge for the depthTexture interpolation (default = 0)
-              maxDepthThreshold={1} // Upper edge for the depthTexture interpolation (default = 0)
-              depthToBlurRatioBias={0.25} // Adds a bias factor to the depthTexture before calculating the blur amount [blurFactor = blurTexture * (depthTexture + bias)]. It accepts values between 0 and 1, default is 0.25. An amount > 0 of bias makes sure that the blurTexture is not too sharp because of the multiplication with the depthTexture
-              distortion={1} // Amount of distortion based on the distortionMap texture
-              color={"#797979"}
-              reflectorOffset={0.2}
-            />
-          </mesh>
         </PresentationControls>
         <Environment preset="studio" />
       </Canvas>

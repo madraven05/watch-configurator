@@ -7,6 +7,7 @@ import {
 } from "./context/WatchContext";
 import { BiMenu } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
+import ColorPanel from "./ColorPanel";
 
 const Configurator:React.FC = () => {
   const colors = [
@@ -67,12 +68,12 @@ const Configurator:React.FC = () => {
         onClick={() => setShowDialog(true)}
         className={`${
           showDialog ? "hidden" : ""
-        } fixed lg:hidden right-5 bg-stone-600/10 rounded-full p-2 top-14 text-5xl`}
+        } fixed lg:hidden right-5 rounded-full p-2 top-14 text-5xl`}
       />
       <div
         className={`${
           showDialog ? "" : "hidden"
-        } transition duration-300 ease-in-out lg:w-1/4 lg:h-screen lg:overflow-y-auto w-2/3 h-screen overflow-x-auto fixed right-0 top-0 shadow-md bg-stone-400/30 backdrop-blur-lg text-stone-800 rounded-lg py-10 px-5 font-thin`}
+        } transition duration-300 ease-in-out h-full overflow-x-auto fixed right-0 top-0 shadow-md backdrop-blur-lg text-stone-800 rounded-lg py-10 px-5 font-thin`}
       >
         <div className="flex justify-between items-center w-full">
           <h2 className="text-lg">Customize your watch!</h2>
@@ -81,18 +82,14 @@ const Configurator:React.FC = () => {
             onClick={() => setShowDialog(false)}
           />
         </div>
-        <div className="flex flex-col w-full gap-5 mt-5  items-start justify-center">
+        <div className="flex flex-col w-full gap-5 mt-5 items-start justify-center">
           {/* Main body */}
           <div className="flex flex-col w-full">
             <h3 className="font-normal">Main Body</h3>
             <div className="mt-4 flex flex-col gap-4">
               <PanelDisclosure title="Colours">
                 <div>
-                  <CirclePicker
-                    onChange={(color) => handleColorChange("main-body", color)}
-                    circleSize={20}
-                    colors={mainBodyColors}
-                  />
+                  <ColorPanel colors={mainBodyColors}/>
                 </div>
               </PanelDisclosure>
               <PanelDisclosure title="Texture">
@@ -119,7 +116,7 @@ const Configurator:React.FC = () => {
                   </button>
                 </div>
               </PanelDisclosure>
-              <hr className="border-t-2 mt-2 rounded-full border-stone-400" />
+              <hr className="border-t-2 mt-2 rounded-ful" />
             </div>
           </div>
 
@@ -129,13 +126,7 @@ const Configurator:React.FC = () => {
             <div className="mt-3 flex flex-col gap-4">
               <PanelDisclosure title="Colours">
                 <div>
-                  <CirclePicker
-                    onChange={(color) =>
-                      handleColorChange("action-button", color)
-                    }
-                    circleSize={20}
-                    colors={colors}
-                  />
+                  <ColorPanel colors={colors}/>
                 </div>
               </PanelDisclosure>
               <hr className="border-t-2 mt-2 rounded-full border-stone-400" />

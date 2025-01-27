@@ -4,10 +4,12 @@ import "./index.css";
 import App from "./App.tsx";
 import { WatchContextProvider } from "./components/context/WatchContext.tsx";
 
-createRoot(document.getElementById("root")!).render(
+const configuratorContainer = document.getElementById("configurator-container")
+
+createRoot(document.getElementById("configurator-container")!).render(
   <StrictMode>
     <WatchContextProvider>
-      <App />
+      <App modelPath={configuratorContainer?.getAttribute("data-model-path") as string}/>
     </WatchContextProvider>
   </StrictMode>
 );

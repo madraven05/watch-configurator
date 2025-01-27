@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap");
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --font-archivo: Archivo, sans-serif;
+  --font-tenor: Tenor Sans, sans-serif;
+}
 
 body {
   @apply text-gray-800;

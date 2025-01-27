@@ -1,20 +1,22 @@
-import Configurator from "./components/Configurator";
-import ConfiguratorCanvas from "./components/ConfiguratorCanvas";
-import { useWatchContext } from "./components/context/WatchContext";
+import { useState } from "react";
+import Modal from "./components/Modal";
 
-function App() {
-  const {watchState} = useWatchContext();
+interface AppProps {
+  modelPath: string;
+}
+
+const App: React.FC<AppProps> = ({ modelPath }) => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="h-screen bg-stone-200 flex gap-10 justify-center p-10">
-      <div className="w-full h-full gap-2 flex flex-col">
-        <h1>Apple Watch <span style={{ color: watchState['band-outside'].color }}>Ultra</span></h1>
-        <h2 className="font-thin">$400</h2>
-        <ConfiguratorCanvas />
-      </div>
-      <Configurator/>
+    <div>
+      <button onClick={() => setOpen(true)} className="button">
+        Customize
+      </button>
+
+      <Modal modelPath={modelPath} open={open} setOpen={setOpen} />
     </div>
   );
-}
+};
 
 export default App;
