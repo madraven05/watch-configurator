@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import ConfiguratorCanvas from "./ConfiguratorCanvas";
 import Configurator from "./Configurator";
-// import ConfiguratorCanvas from "./ConfiguratorCanvas";
+import { TfiClose } from "react-icons/tfi";
 
 interface ModalProps {
   open: boolean;
@@ -16,16 +16,14 @@ const Modal: React.FC<ModalProps> = ({ open, setOpen, modelPath }) => {
         open ? "flex flex-col" : "hidden"
       } w-[90vw] h-[80vh] p-5 gap-3 bg-white fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 border-2 border-gray-300 shadow-md rounded-md`}
     >
-      <div className="">
-        <button onClick={() => setOpen(false)} className="button">
-          X
-        </button>
-      </div>
+      <button onClick={() => setOpen(false)} className="px-5 py-2">
+        <TfiClose />
+      </button>
       <div className="w-full h-full flex">
-        <div className="w-[70%] p-4">
+        <div className="w-[70%] h-full p-3">
           <ConfiguratorCanvas modelPath={modelPath} />
         </div>
-        <div className="w-[30%] p-4">
+        <div className="w-[30%] h-full p-3">
           <Configurator />
         </div>
       </div>

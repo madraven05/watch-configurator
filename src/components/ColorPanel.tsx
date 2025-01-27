@@ -12,7 +12,7 @@ const ColorPanel: React.FC<ColorPanelProps> = ({ colors }) => {
         <div
           key={idx}
           style={{ backgroundColor: col }}
-          className={`min-h-5 min-w-5 w-5 h-5 rounded-full shadow-sm`}
+          className={`min-h-5 min-w-5 w-5 h-5 rounded-full shadow-sm hover:cursor-pointer hover:-translate-y-0.5 transition duration-200`}
         >
           &nbsp;
         </div>

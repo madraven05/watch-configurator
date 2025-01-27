@@ -1,15 +1,11 @@
-import React, { useState } from "react";
-import { CirclePicker, ColorResult } from "react-color";
+import React from "react";
 import PanelDisclosure from "./common/Disclosure";
 import {
-  AppleWatchUltraStateKeys,
   useWatchContext,
 } from "./context/WatchContext";
-import { BiMenu } from "react-icons/bi";
-import { CgClose } from "react-icons/cg";
 import ColorPanel from "./ColorPanel";
 
-const Configurator:React.FC = () => {
+const Configurator: React.FC = () => {
   const colors = [
     "#DC602A",
     "#491c02",
@@ -26,21 +22,20 @@ const Configurator:React.FC = () => {
   const mainBodyColors = ["#222222", "#636363"];
 
   const { watchState, setWatchState } = useWatchContext();
-  const [showDialog, setShowDialog] = useState(true);
 
-  const handleColorChange = (
-    part: AppleWatchUltraStateKeys,
-    color: ColorResult
-  ) => {
-    console.debug(`Changing color of ${part} to color: ${color.hex}`);
-    setWatchState((prevWatchState) => ({
-      ...prevWatchState,
-      [part]: {
-        ...prevWatchState[part],
-        color: color.hex,
-      },
-    }));
-  };
+  // const handleColorChange = (
+  //   part: AppleWatchUltraStateKeys,
+  //   color: ColorResult
+  // ) => {
+  //   console.debug(`Changing color of ${part} to color: ${color.hex}`);
+  //   setWatchState((prevWatchState) => ({
+  //     ...prevWatchState,
+  //     [part]: {
+  //       ...prevWatchState[part],
+  //       color: color.hex,
+  //     },
+  //   }));
+  // };
 
   const handleBandTextureChange = (type: "normal" | "leather") => {
     setWatchState((prevWatchState) => ({
@@ -63,169 +58,118 @@ const Configurator:React.FC = () => {
   };
 
   return (
-    <>
-      <BiMenu
-        onClick={() => setShowDialog(true)}
-        className={`${
-          showDialog ? "hidden" : ""
-        } fixed lg:hidden right-5 rounded-full p-2 top-14 text-5xl`}
-      />
-      <div
-        className={`${
-          showDialog ? "" : "hidden"
-        } transition duration-300 ease-in-out h-full overflow-x-auto fixed right-0 top-0 shadow-md backdrop-blur-lg text-stone-800 rounded-lg py-10 px-5 font-thin`}
-      >
-        <div className="flex justify-between items-center w-full">
-          <h2 className="text-lg">Customize your watch!</h2>
-          <CgClose
-            className="text-xl lg:hidden"
-            onClick={() => setShowDialog(false)}
-          />
+    <div className="w-full px-3">
+      <h2 className="text-lg">Customize your watch!</h2>
+      <div className="flex flex-col shrink w-full gap-2 items-start justify-center">
+        {/* Main body */}
+        <div className="flex flex-col shrink w-full gap-5">
+          <h3 className="font-normal">Main Body</h3>
+          <div className="flex flex-col shrink gap-5 mb-2">
+            <PanelDisclosure title="Colours">
+              <div>
+                <ColorPanel colors={mainBodyColors} />
+              </div>
+            </PanelDisclosure>
+            <PanelDisclosure title="Texture">
+              <div className="flex gap-3 text-sm">
+                <button
+                  onClick={() => handleBodyTextureChange("normal")}
+                  className={`${
+                    watchState["main-body"].texture === "normal"
+                      ? "font-normal"
+                      : ""
+                  } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
+                >
+                  Normal
+                </button>
+                <button
+                  onClick={() => handleBodyTextureChange("matte")}
+                  className={`${
+                    watchState["main-body"].texture === "matte"
+                      ? "font-normal"
+                      : ""
+                  } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
+                >
+                  Matte
+                </button>
+              </div>
+            </PanelDisclosure>
+          </div>
         </div>
-        <div className="flex flex-col w-full gap-5 mt-5 items-start justify-center">
-          {/* Main body */}
-          <div className="flex flex-col w-full">
-            <h3 className="font-normal">Main Body</h3>
-            <div className="mt-4 flex flex-col gap-4">
-              <PanelDisclosure title="Colours">
-                <div>
-                  <ColorPanel colors={mainBodyColors}/>
-                </div>
-              </PanelDisclosure>
-              <PanelDisclosure title="Texture">
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => handleBodyTextureChange("normal")}
-                    className={`${
-                      watchState["main-body"].texture === "normal"
-                        ? "font-normal"
-                        : ""
-                    } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
-                  >
-                    Normal
-                  </button>
-                  <button
-                    onClick={() => handleBodyTextureChange("matte")}
-                    className={`${
-                      watchState["main-body"].texture === "matte"
-                        ? "font-normal"
-                        : ""
-                    } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
-                  >
-                    Matte
-                  </button>
-                </div>
-              </PanelDisclosure>
-              <hr className="border-t-2 mt-2 rounded-ful" />
-            </div>
+
+        {/* Action button */}
+        <div className="flex flex-col shrink w-full gap-5">
+          <h3 className="font-normal">Action Button</h3>
+          <div className="flex flex-col shrink gap-5 mb-2">
+            <PanelDisclosure title="Colours">
+              <div>
+                <ColorPanel colors={colors} />
+              </div>
+            </PanelDisclosure>
           </div>
+        </div>
 
-          {/* Action button */}
-          <div className="flex flex-col w-full">
-            <h3 className="font-normal">Action Button</h3>
-            <div className="mt-3 flex flex-col gap-4">
-              <PanelDisclosure title="Colours">
-                <div>
-                  <ColorPanel colors={colors}/>
-                </div>
-              </PanelDisclosure>
-              <hr className="border-t-2 mt-2 rounded-full border-stone-400" />
-            </div>
+        {/* Digital crown */}
+        <div className="flex flex-col shrink w-full gap-5">
+          <h3 className="font-normal">Digital Crown</h3>
+          <div className="flex flex-col shrink gap-5 mb-2">
+            <PanelDisclosure title="Colours">
+              <div>
+                <ColorPanel colors={colors} />
+              </div>
+            </PanelDisclosure>
           </div>
+        </div>
 
-          {/* Side button */}
-          {/* <div className="flex flex-col w-full">
-          <h3 className="font-normal">Side Button</h3>
-        </div> */}
-
-          {/* Digital crown */}
-          <div className="flex flex-col w-full">
-            <h3 className="font-normal">Digital Crown</h3>
-            <div className="mt-3 flex flex-col gap-4">
-              <PanelDisclosure title="Colours">
-                <div>
-                  <CirclePicker
-                    onChange={(color) =>
-                      handleColorChange("digital-crown", color)
-                    }
-                    circleSize={20}
-                    colors={colors}
-                  />
-                </div>
-              </PanelDisclosure>
-              <hr className="border-t-2 mt-2 rounded-full border-stone-400" />
-            </div>
+        {/* Band inside */}
+        <div className="flex flex-col shrink w-full gap-5">
+          <h3 className="font-normal">Band Inside</h3>
+          <div className="flex flex-col shrink gap-5 mb-2">
+            <PanelDisclosure title="Colours">
+              <div>
+                <ColorPanel colors={colors} />
+              </div>
+            </PanelDisclosure>
           </div>
+        </div>
 
-          {/* Band holder */}
-          {/* <div className="flex flex-col gap-3 w-full">
-          <h3 className="font-normal">Band Holder</h3>
-          <hr className="text-stone-800"/>
-        </div> */}
-
-          {/* Band inside */}
-          <div className="flex flex-col w-full">
-            <h3 className="font-normal">Band Inside</h3>
-            <div className="mt-3 flex flex-col gap-4">
-              <PanelDisclosure title="Colours">
-                <div>
-                  <CirclePicker
-                    onChange={(color) =>
-                      handleColorChange("band-inside", color)
-                    }
-                    circleSize={20}
-                    colors={colors}
-                  />
-                </div>
-              </PanelDisclosure>
-              <hr className="border-t-2 mt-2 rounded-full border-stone-400" />
-            </div>
-          </div>
-
-          {/* Band outside */}
-          <div className="flex flex-col w-full">
-            <h3 className="font-normal">Band Outside</h3>
-            <div className="mt-3 flex flex-col gap-4">
-              <PanelDisclosure title="Colours">
-                <div>
-                  <CirclePicker
-                    onChange={(color) =>
-                      handleColorChange("band-outside", color)
-                    }
-                    circleSize={20}
-                    colors={colors}
-                  />
-                </div>
-              </PanelDisclosure>
-              <PanelDisclosure title="Texture">
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => handleBandTextureChange("normal")}
-                    className={`${
-                      watchState["band-outside"].texture === "normal"
-                        ? "font-normal"
-                        : ""
-                    } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
-                  >
-                    Normal
-                  </button>
-                  <button
-                    onClick={() => handleBandTextureChange("leather")}
-                    className={`${
-                      watchState["band-outside"].texture === "leather"
-                        ? "font-normal"
-                        : ""
-                    } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
-                  >
-                    Leather
-                  </button>
-                </div>
-              </PanelDisclosure>
-            </div>
+        {/* Band outside */}
+        <div className="flex flex-col shrink w-full gap-5">
+          <h3 className="font-normal">Band Outside</h3>
+          <div className="flex flex-col shrink gap-5">
+            <PanelDisclosure title="Colours">
+              <div>
+                <ColorPanel colors={colors} />
+              </div>
+            </PanelDisclosure>
+            <PanelDisclosure title="Texture">
+              <div className="flex gap-3 text-sm">
+                <button
+                  onClick={() => handleBandTextureChange("normal")}
+                  className={`${
+                    watchState["band-outside"].texture === "normal"
+                      ? "font-normal"
+                      : ""
+                  } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
+                >
+                  Normal
+                </button>
+                <button
+                  onClick={() => handleBandTextureChange("leather")}
+                  className={`${
+                    watchState["band-outside"].texture === "leather"
+                      ? "font-normal"
+                      : ""
+                  } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
+                >
+                  Leather
+                </button>
+              </div>
+            </PanelDisclosure>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
