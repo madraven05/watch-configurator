@@ -78,7 +78,7 @@ const Configurator: React.FC = () => {
                     watchState["main-body"].texture === "normal"
                       ? "font-normal"
                       : ""
-                  } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
+                  } hover:font-semibold hover:cursor-pointer transition duration-200 ease-in-out hover:-translate-y-0.5`}
                 >
                   Normal
                 </button>
@@ -88,7 +88,7 @@ const Configurator: React.FC = () => {
                     watchState["main-body"].texture === "matte"
                       ? "font-normal"
                       : ""
-                  } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
+                  } hover:font-semibold hover:cursor-pointer transition duration-200 ease-in-out hover:-translate-y-0.5`}
                 >
                   Matte
                 </button>
@@ -150,7 +150,7 @@ const Configurator: React.FC = () => {
                     watchState["band-outside"].texture === "normal"
                       ? "font-normal"
                       : ""
-                  } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
+                  } hover:font-semibold hover:cursor-pointer transition duration-200 ease-in-out hover:-translate-y-0.5`}
                 >
                   Normal
                 </button>
@@ -160,7 +160,7 @@ const Configurator: React.FC = () => {
                     watchState["band-outside"].texture === "leather"
                       ? "font-normal"
                       : ""
-                  } hover:font-normal transition duration-200 ease-in-out hover:-translate-y-0.5`}
+                  } hover:font-semibold hover:cursor-pointer transition duration-200 ease-in-out hover:-translate-y-0.5`}
                 >
                   Leather
                 </button>

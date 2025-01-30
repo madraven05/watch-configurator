@@ -10,7 +10,7 @@ import Loading from "./three/Loading";
 
 const ConfiguratorCanvas:React.FC<{modelPath: string}> = ({modelPath}) => {
   return (
-    <div className="h-full w-full border-[1px] border-black/10">
+    <div className="h-full p-5 w-full border-[1px] border-black/10">
       <Canvas camera={{ position: [0, 0, 5] }}>
         <PresentationControls
           global
