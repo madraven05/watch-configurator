@@ -32,8 +32,7 @@ export interface AppleWatchUltraState {
   };
 }
 
-
-export type AppleWatchUltraStateKeys = keyof AppleWatchUltraState;
+export type AppleWatchUltraStateKey = keyof AppleWatchUltraState;
 
 interface WatchContextType {
   watchState: AppleWatchUltraState;

@@ -1,6 +1,7 @@
 import React from "react";
 import PanelDisclosure from "./common/Disclosure";
 import {
+  AppleWatchUltraStateKey,
   useWatchContext,
 } from "./context/WatchContext";
 import ColorPanel from "./ColorPanel";
@@ -23,19 +24,16 @@ const Configurator: React.FC = () => {
 
   const { watchState, setWatchState } = useWatchContext();
 
-  // const handleColorChange = (
-  //   part: AppleWatchUltraStateKeys,
-  //   color: ColorResult
-  // ) => {
-  //   console.debug(`Changing color of ${part} to color: ${color.hex}`);
-  //   setWatchState((prevWatchState) => ({
-  //     ...prevWatchState,
-  //     [part]: {
-  //       ...prevWatchState[part],
-  //       color: color.hex,
-  //     },
-  //   }));
-  // };
+  const handleColorChange = (color: string, part: AppleWatchUltraStateKey) => {
+    console.log(`Changing color of ${part} to color: ${color}`);
+    setWatchState((prevWatchState) => ({
+      ...prevWatchState,
+      [part]: {
+        ...prevWatchState[part],
+        color: color,
+      },
+    }));
+  };
 
   const handleBandTextureChange = (type: "normal" | "leather") => {
     setWatchState((prevWatchState) => ({
@@ -67,7 +65,7 @@ const Configurator: React.FC = () => {
           <div className="flex flex-col shrink gap-5 mb-2">
             <PanelDisclosure title="Colours">
               <div>
-                <ColorPanel colors={mainBodyColors} />
+                <ColorPanel onChange={handleColorChange} name="main-body" colors={mainBodyColors} />
               </div>
             </PanelDisclosure>
             <PanelDisclosure title="Texture">
@@ -103,7 +101,7 @@ const Configurator: React.FC = () => {
           <div className="flex flex-col shrink gap-5 mb-2">
             <PanelDisclosure title="Colours">
               <div>
-                <ColorPanel colors={colors} />
+                <ColorPanel onChange={handleColorChange} name="action-button" colors={colors} />
               </div>
             </PanelDisclosure>
           </div>
@@ -115,7 +113,7 @@ const Configurator: React.FC = () => {
           <div className="flex flex-col shrink gap-5 mb-2">
             <PanelDisclosure title="Colours">
               <div>
-                <ColorPanel colors={colors} />
+                <ColorPanel onChange={handleColorChange} name="digital-crown" colors={colors} />
               </div>
             </PanelDisclosure>
           </div>
@@ -127,7 +125,7 @@ const Configurator: React.FC = () => {
           <div className="flex flex-col shrink gap-5 mb-2">
             <PanelDisclosure title="Colours">
               <div>
-                <ColorPanel colors={colors} />
+                <ColorPanel onChange={handleColorChange} name="band-inside" colors={colors} />
               </div>
             </PanelDisclosure>
           </div>
@@ -139,7 +137,7 @@ const Configurator: React.FC = () => {
           <div className="flex flex-col shrink gap-5">
             <PanelDisclosure title="Colours">
               <div>
-                <ColorPanel colors={colors} />
+                <ColorPanel onChange={handleColorChange} name="band-outside" colors={colors} />
               </div>
             </PanelDisclosure>
             <PanelDisclosure title="Texture">
